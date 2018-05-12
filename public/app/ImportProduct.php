@@ -14,4 +14,5 @@ class ImportProduct extends Model
         'quantity',
         'importprice'
     ];
+    public $timestamps = false;
 }

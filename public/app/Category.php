@@ -12,4 +12,5 @@ class Category extends Model
         'id',
         'name'
     ];
+    public $timestamps = false;
 }

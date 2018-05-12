@@ -14,5 +14,5 @@ class Sale extends Model
         'quantity'
     ];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

@@ -13,4 +13,6 @@ class Store extends Model
         'pro_id',
         'quantity'
     ];
+
+    public $timestamps = false;
 }

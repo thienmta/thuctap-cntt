@@ -12,6 +12,7 @@
 */
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use App\Category;
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,17 +75,42 @@ Route::group(['prefix'=>'products'], function(){
 	    }
 	    return redirect('/loginadmin');
 	});
-	
-	Route::get('dang-xuat', function(){
-		if(Session::has('id_khachhang') && Session::has('hoten_khachhang')){
-	        Session::forget('id_khachhang');
-		    Session::forget('hoten_khachhang');
-		    
-		    return redirect('khach-hang-dang-nhap');
-	    }
-	    else{
-	        return redirect('khach-hang-dang-nhap');
-	    }
-	});
 });
 
+Route::group(['prefix'=>'categorys'], function(){
+	Route::get('show', function() {
+		if(Session::has('id_user') && Session::has('name_user')){
+			$categorys = Category::all();
+	        return view('categorys.show')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user'), 'categorys' => $categorys]);
+	    }
+	    return redirect('/loginadmin');
+	});
+
+	Route::get('create', function() {
+		if(Session::has('id_user') && Session::has('name_user')){
+	        return view('categorys.create')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user')]);
+	    }
+	    return redirect('/loginadmin');
+	});
+
+	Route::get('/{id}/edit', function($id) {
+		if(Session::has('id_user') && Session::has('name_user')){
+			$categorys = Category::where('id', $id)->get();
+	        return view('categorys.edit')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user'), 'categorys' => $categorys]);
+	    }
+	    return redirect('/loginadmin');
+	});
+
+	Route::post('create', 'CategoryController@create');
+
+	Route::post('edit', 'CategoryController@edit');
+
+	Route::get('/{id}/delete', function($id) {
+		if(Session::has('id_user') && Session::has('name_user')){
+			Category::where('id', $id)->delete();
+			$categorys = Category::all();
+	        return redirect('categorys/show')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user'), 'categorys' => $categorys]);
+	    }
+	    return redirect('/loginadmin');
+	});
+});
