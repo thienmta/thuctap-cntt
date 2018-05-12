@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -29,5 +30,27 @@ class UserController extends Controller
 	    else{
 	        return redirect('/loginadmin');
 	    }
+    }
+
+    public function register (Request $request) {
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $password = $request->input('password');
+
+            $data = array(
+                'name' => $name,
+                'email' => $email,
+                'password' => $password
+            );
+
+            $user = new User();
+
+            if( (DB::table('users')->where('email', $email)->count()>=1) ){
+                return redirect('/registeradmin')->with('error','Email da duoc su dung!');
+            }
+            else{
+                $user->insert($data);
+                return redirect('/loginadmin');
+            }
     }
 }

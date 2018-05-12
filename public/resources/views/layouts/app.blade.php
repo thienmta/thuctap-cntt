@@ -49,13 +49,12 @@
                     <!-- Authentication Links -->
 
                     @if (isset($name))
-                        <li><a class="nav-link" href=""><i class="fa fa-tags" aria-hidden="true"></i>Tags</a></li>
-                        <li><a class="nav-link" href=""><i class="fa fa-building" aria-hidden="true"></i>Staff</a></li>
-                        <li><a class="nav-link" href=""><i class="fa fa-building" aria-hidden="true"></i>Companies</a></li>
-                        <li><a class="nav-link" href=""><i class="fa fa-briefcase" aria-hidden="true"></i>Projects</a></li>
-                        <li><a class="nav-link" href=""><i class="fa fa-tasks" aria-hidden="true"></i>Tasks</a></li>
-                        <li><a class="nav-link" href=""><i class="fa fa-outdent" aria-hidden="true"></i>Project Gantt</a></li>
-                        <li><a class="nav-link" href=""><i class="fa fa-bar-chart" aria-hidden="true"></i>Human Resource Chart</a></li>
+                        <li><a class="nav-link" href="{{url('products/show')}}"><i class="fa fa-calendar" aria-hidden="true"></i> Product</a></li>
+                        <li><a class="nav-link" href=""><i class="fa fa-crosshairs" aria-hidden="true"></i> Category</a></li>
+                        <li><a class="nav-link" href=""><i class="fa fa-fort-awesome" aria-hidden="true"></i> Store</a></li>
+                        <li><a class="nav-link" href=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> ImportProduct</a></li>
+                        <li><a class="nav-link" href=""><i class="fa fa-area-chart" aria-hidden="true"></i> Sale</a></li>
+                        <li><a class="nav-link" href=""><i class="glyphicon glyphicon-user" aria-hidden="true"></i> User</a></li>
                         
                         <li class="nav-link">
                             <a class="nav-link" href="{{url('/logoutadmin')}}"><i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> Logout</a>
