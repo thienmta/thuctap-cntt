@@ -30,4 +30,25 @@ class ProductController extends Controller
                 return redirect('/products/show');
             }
     }
+
+    public function edit (Request $request) {
+            $name = $request->input('name');
+            $cat_id = $request->input('category');
+            $price = $request->input('price');
+            $id = $request->input('id');
+
+            $product = new Product();
+
+            if( (DB::table('products')->where('name', $name)->count()>=1) ){
+                return redirect('/products/create')->with('error','Product name da duoc ton tai!');
+            }
+            else{
+            	Product::where('id', $id)->update([
+            		'name' => $name,
+	                'cat_id' => $cat_id,
+	                'price' => $price
+            	]);
+                return redirect('/products/show');
+            }
+    }
 }

@@ -26,7 +26,7 @@
 
                             <tr>
                                 <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td><a href="{{url('/products/'.$product->id.'/edit')}}">{{ $product->name }}</a></td>
                                 <td>{{ $product->cat_id }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>

@@ -49,14 +49,23 @@ Route::group(['prefix'=>'products'], function(){
 
 	Route::get('create', function() {
 		if(Session::has('id_user') && Session::has('name_user')){
-			$products = Product::all();
 	        return view('products.create')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user')]);
 	    }
 	    return redirect('/loginadmin');
 	});
 
+	Route::get('/{id}/edit', function($id) {
+		if(Session::has('id_user') && Session::has('name_user')){
+			$products = Product::where('id', $id)->get();
+	        return view('products.edit')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user'), 'products' => $products]);
+	    }
+	    return redirect('/loginadmin');
+	});
+
 	Route::post('create', 'ProductController@create');
-	Route::post('edit', 'KhachhangController@Dangnhap');
+
+	Route::post('edit', 'ProductController@edit');
+	
 	Route::get('dang-xuat', function(){
 		if(Session::has('id_khachhang') && Session::has('hoten_khachhang')){
 	        Session::forget('id_khachhang');
