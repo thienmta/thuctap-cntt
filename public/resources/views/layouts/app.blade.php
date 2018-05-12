@@ -47,12 +47,8 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    @guest
 
-                    <li><a href="{{url('/login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li>
-                    <li><a href="{{url('/register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>
-                            Register</a></li>
-                    @else
+                    @if (isset($name))
                         <li><a class="nav-link" href=""><i class="fa fa-tags" aria-hidden="true"></i>Tags</a></li>
                         <li><a class="nav-link" href=""><i class="fa fa-building" aria-hidden="true"></i>Staff</a></li>
                         <li><a class="nav-link" href=""><i class="fa fa-building" aria-hidden="true"></i>Companies</a></li>
@@ -61,30 +57,16 @@
                         <li><a class="nav-link" href=""><i class="fa fa-outdent" aria-hidden="true"></i>Project Gantt</a></li>
                         <li><a class="nav-link" href=""><i class="fa fa-bar-chart" aria-hidden="true"></i>Human Resource Chart</a></li>
                         
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                <span class="text-danger"></span>
-                                <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href=""
-                                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-power-off"
-                                           aria-hidden="true"></i> Logout
-                                    </a>
-
-                                    <form id="logout-form"
-                                          action=""
-                                          method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
+                        <li class="nav-link">
+                            <a class="nav-link" href="{{url('/logoutadmin')}}"><i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> Logout</a>
+                            <b>Xin chao: {{$name}}</b>
                         </li>
-                    @endguest
+                    @else
+
+                    <li><a href="{{url('/loginadmin')}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li>
+                    <li><a href="{{url('/registeradmin')}}"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                            Register</a></li>
+                    @endif
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

@@ -12,13 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
-Route::get('/login', function () {
+Route::get('/registeradmin', function () {
+    return view('auth.register');
+});
+
+Route::post('/registeradmin', 'UserController@register');
+
+Route::get('/home', function() {
+	if(Session::has('id_user') && Session::has('name_user')){
+        return view('home')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user')]);
+    }
+    return redirect('/loginadmin');
+});
+
+Route::get('/loginadmin', function () {
     return view('auth.login');
 });
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+Route::post('/loginadmin', 'UserController@login');
+
+Route::get('/logoutadmin', 'UserController@logout');
