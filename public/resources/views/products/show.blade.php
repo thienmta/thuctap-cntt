@@ -30,9 +30,11 @@
                                 <td>{{ $product->cat_id }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-delete">
-                                        Delete <span class="glyphicon glyphicon-trash deleteRow"></span>
-                                    </button>
+                                    <a href="{{url('/products/'.$product->id.'/delete')}}">
+                                        <button type="button" class="btn btn-danger btn-delete">
+                                            Delete <span class="glyphicon glyphicon-trash deleteRow"></span>
+                                        </button>
+                                    </a>
 
 
                                 </td>

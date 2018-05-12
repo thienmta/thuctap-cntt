@@ -65,6 +65,15 @@ Route::group(['prefix'=>'products'], function(){
 	Route::post('create', 'ProductController@create');
 
 	Route::post('edit', 'ProductController@edit');
+
+	Route::get('/{id}/delete', function($id) {
+		if(Session::has('id_user') && Session::has('name_user')){
+			Product::where('id', $id)->delete();
+			$products = Product::all();
+	        return redirect('products/show')->with(['id' => Session::get('id_user'), 'name' => Session::get('name_user'), 'products' => $products]);
+	    }
+	    return redirect('/loginadmin');
+	});
 	
 	Route::get('dang-xuat', function(){
 		if(Session::has('id_khachhang') && Session::has('hoten_khachhang')){
@@ -78,3 +87,4 @@ Route::group(['prefix'=>'products'], function(){
 	    }
 	});
 });
+
