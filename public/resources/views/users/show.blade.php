@@ -5,8 +5,7 @@
         
         <div class="panel panel-primary ">
             <div class="panel-heading clearfix">
-                <span class="pull-left">Product</span>
-                <a class="pull-right btn btn-primary btn-sm" href="{{url('/categorys/create')}}">Create new</a>
+                <span class="pull-left">Admin</span>
             </div>
             <div class="panel-body">
                 
@@ -15,18 +14,21 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    @foreach($categorys as $key => $category)
+                    @foreach($users as $key => $user)
 
                             <tr>
-                                <td>{{ $category->id }}</td>
-                                <td><a href="{{url('/categorys/'.$category->id.'/edit')}}">{{ $category->name }}</a></td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                
                                 <td>
-                                    <a href="{{url('/categorys/'.$category->id.'/delete')}}">
+                                    <a href="{{url('/users/'.$user->id.'/delete')}}">
                                         <button type="button" class="btn btn-danger btn-delete">
                                             Delete <span class="glyphicon glyphicon-trash deleteRow"></span>
                                         </button>
