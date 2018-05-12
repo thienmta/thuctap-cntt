@@ -24,7 +24,7 @@
 
               <div class="form-group">
                   <label for="project-name">Product<span class="required">*</span></label>
-                  <input placeholder="Enter product" name="product" class="form-control" value="{{$sale->pro_id}}" />
+                  <input placeholder="Enter product" name="pro_id" class="form-control" value="{{$sale->pro_id}}" />
               </div>
 
               <div class="form-group">
